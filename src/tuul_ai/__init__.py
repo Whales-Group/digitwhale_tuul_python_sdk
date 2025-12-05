@@ -1,4 +1,4 @@
-# src/tuulpy/__init__.py
+# src/tuul_ai/__init__.py
 
 # Expose the core client classes
 from .client import TuulClient, AsyncTuulClient

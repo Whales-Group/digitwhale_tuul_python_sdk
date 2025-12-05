@@ -2,9 +2,9 @@ import pytest
 import respx
 import json
 from httpx import Response
-from tuulpy import TuulClient, AsyncTuulClient
-from tuulpy.exceptions import AuthenticationError, PermissionError, RateLimitError
-from tuulpy.types.lite import LiteResponse # Assuming LiteResponse is updated to handle nested data
+from tuul_ai import TuulClient, AsyncTuulClient
+from tuul_ai.exceptions import AuthenticationError, PermissionError, RateLimitError
+from tuul_ai.types.lite import LiteResponse # Assuming LiteResponse is updated to handle nested data
 
 BASE_URL = "https://api.tuul.digitwhale.com"
 

@@ -7,7 +7,7 @@ from .exceptions import (
     PermissionError, RateLimitError, APIStatusError
 )
 
-logger = logging.getLogger("tuulpy")
+logger = logging.getLogger("tuul")
 
 DEFAULT_BASE_URL = "https://api.tuul.digitwhale.com"
 
@@ -26,7 +26,7 @@ class BaseClient:
         self._headers = {
             "tuul_api_key": self.api_key,
             "Content-Type": "application/json",
-            "User-Agent": "tuulpy/0.1.0"
+            "User-Agent": "tuul-sdk/0.1.0"
         }
 
     def _handle_error(self, response: httpx.Response):

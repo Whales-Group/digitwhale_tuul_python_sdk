@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "tuulpy"
+name = "tuul_ai"
 version = "0.1.0"
 description = "Official Python SDK for the Tuul API"
 readme = "README.md"
@@ -27,7 +27,7 @@ dev = [
 ]
 
 [project.scripts]
-tuul = "tuulpy.cli:app"
+tuul = "tuul_ai.cli:app"
 
 [tool.ruff]
 line-length = 88

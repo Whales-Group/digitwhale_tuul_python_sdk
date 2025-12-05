@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [maiproductionn]
+    branches: [productionn]
   pull_request:
 
 jobs:
@@ -24,6 +24,6 @@ jobs:
       - name: Lint with Ruff
         run: ruff check .
       - name: Type check with Mypy
-        run: mypy src/tuulpy
+        run: mypy src/tuul
       - name: Run Tests
         run: pytest tests/test_client.py # specific unit tests

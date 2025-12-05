@@ -1,8 +1,8 @@
-# tuulpy
+# tuul
 
-[](https://www.google.com/search?q=https://badge.fury.io/py/tuulpy)
-[](https://www.google.com/search?q=https://github.com/your-org/tuulpy/actions)
-[](https://www.google.com/search?q=https://pypi.org/project/tuulpy/)
+[](https://www.google.com/search?q=https://badge.fury.io/py/tuul)
+[](https://www.google.com/search?q=https://github.com/your-org/tuul/actions)
+[](https://www.google.com/search?q=https://pypi.org/project/tuul/)
 [](https://opensource.org/licenses/MIT)
 
 The official Python SDK for the **Tuul API**.
@@ -14,7 +14,7 @@ This library provides convenient access to the Tuul Generative, Conversation, an
 ## Installation
 
 ```bash
-pip install tuulpy
+pip install tuul
 ```
 
 ## Authentication & Configuration
@@ -45,7 +45,7 @@ Standard text generation for creative or analytical tasks. This endpoint often r
 ```python
 import os
 import uuid
-from tuulpy import TuulClient
+from tuul import TuulClient
 
 # 1. Initialize the client using the API key from environment variables
 client = TuulClient(api_key=os.environ.get("TUUL_API_KEY"))
@@ -95,12 +95,12 @@ print(resp.content)
 
 ## 🔁 Async Usage
 
-`tuulpy` provides an `AsyncTuulClient` for use with `asyncio`, which is recommended for high-concurrency applications. It is crucial to use the `async with` block for proper resource management.
+`tuul` provides an `AsyncTuulClient` for use with `asyncio`, which is recommended for high-concurrency applications. It is crucial to use the `async with` block for proper resource management.
 
 ```python
 import asyncio
 import os
-from tuulpy import AsyncTuulClient
+from tuul import AsyncTuulClient
 
 async def generate_response(client: AsyncTuulClient, prompt: str, session_id: str):
     """Helper function to run a generative call."""
@@ -137,8 +137,8 @@ if __name__ == "__main__":
 The library throws custom exceptions mapped to HTTP status codes.
 
 ```python
-from tuulpy import TuulClient
-from tuulpy.exceptions import PermissionError, RateLimitError, APIConnectionError
+from tuul import TuulClient
+from tuul.exceptions import PermissionError, RateLimitError, APIConnectionError
 
 client = TuulClient(api_key="...")
 
@@ -222,7 +222,7 @@ tuul generate "Why is the sky blue?" --session-id "query-1" --agent-id "DWG-1FH4
 To use the default configuration from your `.env` file:
 
 ```bash
-tuul generate "What are the latest stock market trends?" --session-id "trends-5" --web-search
+tuul generate "What are the latest stock market trends?" --session-id "trends-5"
 ```
 
 -----
@@ -259,22 +259,11 @@ Latency: 150.25ms
 
 -----
 
-## Development
+## 📦 Final Notes
 
-We use `hatchling` for build, `pytest` for testing, and `ruff` for linting.
+* **Lite Mode** is ideal for chatbots, real-time editors, instant search, or any scenario where **speed matters more than complex reasoning**.
+* **Generative Mode** is recommended for long-form, analytical, or web-enhanced tasks.
+* The CLI automatically loads configuration from environment variables or your `.env` file, keeping your workflow clean and secure.
+* All commands return structured JSON behind the scenes, making the SDK easy to integrate into pipelines or logging systems.
 
-```bash
-# 1. Clone repo
-git clone https://github.com/your-org/tuulpy.git
-cd tuulpy
-
-# 2. Install dev dependencies
-pip install -e .[dev]
-
-# 3. Run tests (Mocks API, no key required)
-pytest
-
-# 4. Lint
-ruff check .
-mypy src/tuulpy
-```
+---

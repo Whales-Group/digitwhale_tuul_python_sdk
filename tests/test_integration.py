@@ -1,7 +1,7 @@
 import pytest
 import os
-from tuulpy import TuulClient, AsyncTuulClient
-from tuulpy.exceptions import AuthenticationError
+from tuul_ai import TuulClient, AsyncTuulClient
+from tuul_ai.exceptions import AuthenticationError
 
 # Skip if no key provided
 pytestmark = pytest.mark.skipif(

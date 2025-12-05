@@ -12,12 +12,19 @@ class APIConnectionError(TuulError):
 
 class AuthenticationError(TuulError):
     """401 - Invalid API Key."""
+    
 
 class PermissionError(TuulError):
     """403 - Often related to IP Whitelisting in Tuul."""
     def __init__(self, message: str, **kwargs):
-        # Add helpful hint for Tuul's specific IP whitelist requirement
-        super().__init__(f"{message} (Check if your IP is whitelisted in Tuul Settings)", **kwargs)
+        msg_lower = message.lower()
+
+        if "api key" in msg_lower or "apikey" in msg_lower:
+            hint = "(Check if your API Key is valid and belongs to this Tuul project)"
+        else:
+            hint = "(Check if your IP is whitelisted in Tuul Configuration Settings)"
+
+        super().__init__(f"{message} {hint}", **kwargs)
 
 class RateLimitError(TuulError):
     """429 - Rate limit exceeded."""
