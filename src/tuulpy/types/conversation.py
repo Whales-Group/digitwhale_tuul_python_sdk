@@ -8,7 +8,6 @@ class Message(BaseModel):
 
 class ConversationRequest(BaseModel):
     message: str
-    session_id: Optional[str] = None
     context: Optional[Dict[str, Any]] = None
 
 class ConversationResponse(BaseModel):
