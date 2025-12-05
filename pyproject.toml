@@ -9,7 +9,7 @@ description = "Official Python SDK for the Tuul API"
 readme = "README.md"
 requires-python = ">=3.9"
 license = "MIT"
-authors = [{ name = "Your Name", email = "dev@example.com" }]
+authors = [{ name = "Dagbue Vivian", email = "vivian@digitwhale.com" }]
 dependencies = [
     "httpx>=0.25.0",
     "pydantic>=2.0.0",
