@@ -9,9 +9,13 @@ class TuulError(Exception):
 
 class APIConnectionError(TuulError):
     """Network transport errors (timeout, DNS)."""
+    def __init__(self, message: str, **kwargs):
+        super().__init__(f"{message}", **kwargs)
 
 class AuthenticationError(TuulError):
     """401 - Invalid API Key."""
+    def __init__(self, message: str, **kwargs):
+        super().__init__(f"{message}", **kwargs)
     
 
 class PermissionError(TuulError):
@@ -19,15 +23,19 @@ class PermissionError(TuulError):
     def __init__(self, message: str, **kwargs):
         msg_lower = message.lower()
 
-        if "api key" in msg_lower or "apikey" in msg_lower:
-            hint = "(Check if your API Key is valid and belongs to this Tuul project)"
-        else:
+        if "ip" in msg_lower:
             hint = "(Check if your IP is whitelisted in Tuul Configuration Settings)"
+        else:
+            hint = "(Check if your API Key is valid and belongs to this Tuul project)"
 
         super().__init__(f"{message} {hint}", **kwargs)
 
 class RateLimitError(TuulError):
     """429 - Rate limit exceeded."""
+    def __init__(self, message: str, **kwargs):
+        super().__init__(f"{message}", **kwargs)
 
 class APIStatusError(TuulError):
     """4xx/5xx errors not covered by specific exceptions."""
+    def __init__(self, message: str, **kwargs):
+        super().__init__(f"{message}", **kwargs)

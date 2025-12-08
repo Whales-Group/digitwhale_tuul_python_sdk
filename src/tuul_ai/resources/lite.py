@@ -1,5 +1,5 @@
 from typing import Optional, List, Dict, Any
-from ..types.lite import LiteRequest, LiteResponse, FullLiteResponse, Characteristic
+from ..types.lite import LiteRequest, LiteResponse, Characteristic
 
 class LiteResource:
     def __init__(self, client):
@@ -12,7 +12,7 @@ class LiteResource:
         characteristics: Optional[List[Dict[str, str]]] = None,
         cache_session: bool = False,
         **kwargs
-    ) -> FullLiteResponse:
+    ) -> LiteResponse:
         """
         Low-latency generation request with specific session characteristics.
         
@@ -32,17 +32,10 @@ class LiteResource:
             **kwargs
         ).model_dump(by_alias=True, exclude_none=True)
         
-        # Adjusting the endpoint path based on common practice (assuming /lite/generate is correct)
         data = self._client.post("/v1beta/models/litegen", json=payload)
-        
-        full_response = FullLiteResponse(**data)
-        
-        final_content = full_response.data.reply
 
-        return LiteResponse(
-            content=final_content,
-            latency_ms=None
-        )
+        return LiteResponse(**data)
+
 
 class AsyncLiteResource:
     def __init__(self, client):
@@ -67,11 +60,4 @@ class AsyncLiteResource:
         
         data = await self._client.post("/v1beta/models/litegen", json=payload)
 
-        full_response = FullLiteResponse(**data)
-        
-        final_content = full_response.data.reply
-
-        return LiteResponse(
-            content=final_content,
-            latency_ms=None
-        )
+        return LiteResponse(**data)

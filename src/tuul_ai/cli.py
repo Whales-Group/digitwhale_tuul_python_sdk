@@ -78,9 +78,7 @@ def generate(
                 reasoning=reasoning
             )
         
-        console.print(f"\n[bold green]Response (Generative):[/bold green] {resp.content}")
-        console.print(f"[dim]ID: {resp.id}[/dim]")
-        console.print(f"[dim]Usage: {resp.usage}[/dim]")
+        console.print(f"\n[bold green]Response (Generative):[/bold green] {resp}")
     except TuulError as e:
         console.print(f"\n[bold red]API Error:[/bold red] {e}")
         raise typer.Exit(code=1)
@@ -114,10 +112,7 @@ def lite(
                 cache_session=cache_session
             )
         
-        console.print(f"\n[bold green]Response (Lite):[/bold green] {resp.content}")
-        # Note: We assume latency_ms is now correctly parsed and available
-        if resp.latency_ms is not None:
-             console.print(f"[dim]Latency: {resp.latency_ms:.2f}ms[/dim]")
+        console.print(f"\n[bold green]Response (Lite):[/bold green] {resp}")
     except TuulError as e:
         console.print(f"\n[bold red]API Error:[/bold red] {e}")
         raise typer.Exit(code=1)

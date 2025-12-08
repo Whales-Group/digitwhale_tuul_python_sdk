@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional, List, Union
+from typing import Optional, List, Union, Dict, Any
 
 # Helper for file/image input
 class ImageOptions(BaseModel):
@@ -41,8 +41,50 @@ class OpenaiPayload(BaseModel):
     abilityOptions: AbilityOptions
 
 
-class GenerateResponse(BaseModel):
+
+
+
+
+
+class GenVersion(BaseModel):
     id: str
     content: str
-    usage: dict
-    created_at: int
+
+
+class GenResponseItem(BaseModel):
+    from_: str = Field(..., alias="from")
+    versions: List[GenVersion]
+
+    tools: Optional[Any] = None
+    id: str
+    createdAt: str
+    updatedAt: str
+
+
+class GenStats(BaseModel):
+    messages: int
+    functionsCalled: int
+    avgResponse: float
+    errors: int
+
+
+class GenMetaData(BaseModel):
+    session_id: str
+    agentId: str
+    agentVersion: Optional[str] = None
+    stats: GenStats
+    error_logs: List[Any]
+
+
+class GenData(BaseModel):
+    response: GenResponseItem
+    meta_data: GenMetaData
+
+
+class GenerateResponse(BaseModel):
+    status: bool
+    statusCode: int
+    message: str
+    data: GenData
+    error: Optional[Any] = None
+

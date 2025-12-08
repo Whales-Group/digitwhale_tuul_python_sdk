@@ -21,14 +21,9 @@ class LiteData(BaseModel):
     reply: str
     totalMessages: int
 
-class FullLiteResponse(BaseModel):
+class LiteResponse(BaseModel):
     """Simplified response model for Lite Mode."""
     status: bool
     message: str
     data: LiteData
     error: Optional[Dict[str, Any]] = None
-
-class LiteResponse(BaseModel):
-    """Simplified response model for Lite Mode."""
-    content: str
-    latency_ms: Optional[float] = None
